@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %} 
+    <link rel="stylesheet" href="{% static 'landing.css' %}" />
+{% endblock %}
+
+{% block title %}chirieshare.ro - Gaseste camere sau locuinte de inchiriat in zona ta!{% endblock %}
+
+
+{% block content %}
+<img src="{% static 'icons/landing_logo.svg' %}" />
+<div class="landing-action">
+  <p class="whiteish-text">
+    Gaseste <strong>camere</strong> (sau locuinte)
+    <strong>de inchiriat</strong> in zona ta!
+  </p>
+  <a href="{% url 'autentificare' %}" class="btn outlined">Continua</a>
+</div>
+{% endblock %}

@@ -19,14 +19,15 @@ from django.urls import path
 from website import views
 
 urlpatterns = [
-    # path('/', views.pagina_de_prezentare, name="pagina_de_prezentare"),
-    path('inregistrare-cont/', views.inregistrare_cont, name="inregistrare_cont"),
+    path('', views.pagina_de_prezentare, name="pagina_de_prezentare"),
+    path('inregistrare/', views.inregistrare, name="inregistrare"),
     path('autentificare/', views.autentificare, name="autentificare"),
-    # path('resetare-parola/', views.resetare_parola, name="resetare_parola"),
-    # path('adauga-anunt/', views.adauga_anunt, name="adauga_anunt"),
-    # path('anunturi/<localitate>/<zona>/<pret>/<camera>/<apartament>/', views.anunturi, name="anunturi"),
-    # path('detalii-anunt/<id_anunt>/', views.detalii_anunt, name="detalii_anunt"),
-    # path('cont/<utilizator>/', views.utilizator, name="utilizator"),
+    path('resetare-parola/', views.resetare_parola, name="resetare_parola"),
+    path('adauga-anunt/', views.adauga_anunt, name="adauga_anunt"),
+    path('anunturi/', views.anunturi, name="anunturi"),
+    path('anunturi/<localitate>/<zona>/<pret>/<camera>/<apartament>/', views.anunturi, name="anunturi"),
+    path('detalii-anunt/<id_anunt>/', views.detalii_anunt, name="detalii_anunt"),
+    path('cont/<id_utilizator>/', views.utilizator, name="utilizator"),
     # path('modificare-cont/<utilizator>', views.modificare_utilizator, name="modificare_utilizator"),
 
     path('admin/', admin.site.urls),

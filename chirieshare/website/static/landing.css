@@ -31,7 +31,6 @@ main {
   margin-top: 1rem;
 }
 
-.landing-action > button {
+.landing-action > a {
   margin-top: 2rem;
-  margin-left: 110px;
 }

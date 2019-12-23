@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %} 
+    <link rel="stylesheet" href="{% static 'listings.css' %}" />
+{% endblock %}
+
+{% block title %}Cont utilizator{% endblock %}
+
+
+{% block content %}
+
+<div class="filters">
+
+    <label for="email">
+    <span>Email</span>
+    <input type="text" id="email" />
+    </label>
+    <div style="margin-top:1rem;"></div>
+    <div class="center">
+    <button class="lg secondary bold">
+        Reseteaza parola
+    </button>
+
+</div>
+
+<div style="margin-top:2rem;"></div>
+{% endblock %}

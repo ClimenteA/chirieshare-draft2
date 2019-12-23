@@ -12,6 +12,7 @@ class Utilizator(models.Model):
             premium: cont platit poate avea activ unul sau mai multe anunturi, 
                             poate vedea statistici cu privire la anunturile postate
                             primeste prin email atunci cand un anunt a fost postat
+            admin  : poate gestiona utilizatorii si anunturile
 
         Un utilizator poate avea unul sau mai multe anunturi postate si/sau unul sau mai multe anunturi salvate la favorite
     """

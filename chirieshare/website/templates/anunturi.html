@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %} 
+    <link rel="stylesheet" href="{% static 'listings.css' %}" />
+{% endblock %}
+
+{% block title %}Anunturi{% endblock %}
+
+
+{% block content %}
+
+<div class="filters">
+    <div class="filters-inputs">
+      <label for="loc">
+        <span>Localitate</span>
+        <input type="text" id="loc" placeholder="Ex: Iasi, Bucuresti.." />
+      </label>
+
+      <label for="zona">
+        <span>Zona</span>
+        <input type="tel" id="zona" placeholder="Ex: Centru Vechi.." />
+      </label>
+    </div>
+
+    <div class="filters-actions">
+      <button class="sm secondary bold">caut camere</button>
+      <span class="tip">sau</span>
+      <button class="sm darkish bold">caut apartament</button>
+    </div>
+  </div>
+
+  <div style="margin-top:2rem;"></div>
+
+  <div class="listings">
+    <article class="card product">
+      <img src="{% static 'logo_placeholder.svg' %}" />
+      <img class="fav" src="{% static '/icons/favorite.svg' %}" />
+      <span class="btn complementary price"> 300 euro </span>
+
+      <h3 class="title">
+        Ap. 2 camere. Iasi, Piata Colentina
+        sssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
+      </h3>
+    </article>
+
+    <article class="card product">
+      <img src="{% static 'logo_placeholder.svg' %}" />
+      <img class="fav" src="{% static '/icons/favorite.svg' %}" />
+      <span class="btn complementary price"> 300 euro </span>
+
+      <h3 class="title">
+        Ap. 3 camere. Cluj, Piata nicolina
+      </h3>
+    </article>
+
+    <article class="card product">
+      <img src="{% static 'logo_placeholder.svg' %}" />
+      <img class="fav" src="{% static '/icons/favorite.svg' %}" />
+      <span class="btn complementary price"> 300 euro </span>
+
+      <h3 class="title">
+        Ap. 3 camere. Cluj, Piata nicolina
+      </h3>
+    </article>
+
+    <article class="card product">
+      <img src="{% static 'logo_placeholder.svg' %}" />
+      <img class="fav" src="{% static '/icons/favorite.svg' %}" />
+      <span class="btn complementary price"> 300 euro </span>
+
+      <h3 class="title">
+        Ap. 3 camere. Cluj, Piata nicolina
+      </h3>
+    </article>
+  </div>
+
+  <div style="margin-top:2rem;"></div>
+  <button class="greyish primary-lighten-text outlined-darkish">
+    Mai mult
+  </button>
+  <div style="margin-top:2rem;"></div>
+
+  <p class="tip mtop mtop btm-right">
+    Filtrele se fac automat! (pe baza anunturilor adaugate la favorite)
+  </p>
+{% endblock %}

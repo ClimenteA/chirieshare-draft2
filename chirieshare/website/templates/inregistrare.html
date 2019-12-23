@@ -5,43 +5,44 @@
     <link rel="stylesheet" href="{% static 'listings.css' %}" />
 {% endblock %}
 
-{% block title %}Autentificare{% endblock %}
+{% block title %}Inregistrare cont{% endblock %}
 
 
 {% block content %}
-
 <div class="filters">
     <h4 class="underlined darkish-text bold">Intra in cont</h4>
-
     <div class="filters-actions">
-        <a href="{% url 'autentificare' %}" class="btn sm secondary bold">login</a>
+        <a href="{% url 'autentificare' %}" class="btn sm darkish bold">login</a>
         <span class="tip">sau</span>
-        <a href="{% url 'inregistrare' %}" class="btn sm darkish bold">register</a>
+        <a href="{% url 'inregistrare' %}" class="btn sm secondary bold">register</a>
     </div>
 
     <label for="email">
-        <span>Email</span>
-        <input type="text" id="email" />
+    <span>Email</span>
+    <input type="text" id="email" />
     </label>
 
     <label for="parola">
-        <span>Parola</span>
-        <input type="text" id="parola" />
+    <span>Parola</span>
+    <input type="text" id="parola" />
+    </label>
+
+    <label for="confp">
+    <span>Confirma parola</span>
+    <input type="text" id="confp" />
     </label>
 
     <div style="margin-top:2rem;"></div>
     <div class="center">
-
-    <button type="submit" class="lg complementary bold">
-        Intra in cont
+    
+    <button class="lg complementary bold">
+        Adauga cont
     </button>
 
     <p class="darkish-text agree-text">
         <a href="{% url 'resetare_parola' %}" class="underlined">Ti-ai uitat parola?</a>
     </p>
-
 </div>
-
 <div style="margin-top:2rem;"></div>
 
 {% endblock %}
