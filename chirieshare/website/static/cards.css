@@ -1,0 +1,165 @@
+article.card {
+  display: inline-block;
+  border: 2px solid var(--greyish);
+  box-shadow: 0px 4px 4px var(--box-shadow);
+  border-radius: 10px;
+  min-width: 300px;
+  min-height: 100px;
+  background: white;
+  margin: var(--margin);
+  padding: 20px;
+  max-width: 640px;
+}
+
+article.card > .title {
+  margin-bottom: 15px;
+  font-weight: bold;
+  border-bottom: 2px solid var(--greyish);
+  text-align: center;
+}
+
+article.card.user {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+article.card.user > section.profile,
+article.card.user > section.contact {
+  display: flex;
+  flex-direction: column;
+  place-items: center center;
+}
+
+article.card.user > section.profile {
+  border-right: 2px solid var(--darkish);
+}
+
+@media only screen and (max-width: 500px) {
+  article.card.user {
+    grid-template-columns: 1fr;
+  }
+
+  article.card.user > section.profile {
+    border: none;
+    margin-bottom: 1rem;
+  }
+
+  article > h3 {
+    font-size: 16px;
+  }
+
+  article > p {
+    font-size: 14px;
+  }
+}
+
+article.card.user > section.profile > img {
+  height: 80px;
+  width: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 0.5rem;
+}
+
+article.card.user > section.profile > span.name {
+  font-weight: bold;
+}
+
+article.card.user > section.profile > span.about {
+  font-size: calc(1rem - 0.2rem);
+}
+
+article.card.product {
+  position: relative;
+  padding: 0;
+  height: 300px;
+  min-width: 300px;
+  width: 100%;
+  border: none;
+  transition-property: transform box-shadow;
+  transition-duration: var(--transition-duration);
+  transition-timing-function: ease-in-out;
+}
+
+article.card.product:hover {
+  transform: scale(1.005);
+  box-shadow: 0px 10px 10px var(--box-shadow);
+}
+
+article.card.product > img {
+  height: inherit;
+  min-width: inherit;
+  width: inherit;
+  object-fit: cover;
+  border-radius: 10px;
+  border: 2px solid var(--greyish);
+  border-radius: var(--border-radius);
+}
+
+article.card.product > img.fav {
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin: 20px;
+  height: 30px;
+  width: 30px;
+  object-fit: contain;
+  min-width: unset;
+  border: none;
+  cursor: pointer;
+}
+
+article.card.product > span.price {
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-weight: bold;
+  margin: 20px;
+}
+
+article.card.product > .title {
+  position: absolute;
+  bottom: 0;
+  font-weight: bold;
+  margin-left: 20px;
+  margin-bottom: 20px;
+  background: var(--whiteish);
+  padding: 1rem;
+  border-radius: 10px;
+  max-width: 80%;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  cursor: pointer;
+  box-shadow: 0px 6px 6px var(--box-shadow);
+}
+
+@media only screen and (max-width: 640px) {
+  article.card.product {
+    height: 280px;
+  }
+
+  article.card.product > .title,
+  article.card.product > span.price {
+    transform: scale(0.9);
+  }
+}
+
+@media only screen and (max-width: 420px) {
+  article.card.product {
+    height: 250px;
+  }
+
+  article.card.product > .title {
+    transform: scale(0.8);
+  }
+}
+
+@media only screen and (max-width: 320px) {
+  article.card.product {
+    height: 200px;
+  }
+
+  article.card.product > .title {
+    transform: scale(0.7);
+  }
+}

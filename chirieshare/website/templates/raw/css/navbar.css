@@ -1,0 +1,48 @@
+nav {
+  display: block;
+  width: 100%;
+  background-color: var(--primary);
+  color: white;
+  height: 50px;
+  box-sizing: border-box;
+  box-shadow: 0px 4px 4px var(--box-shadow);
+}
+
+nav > ul {
+  display: flex;
+  flex-direction: row;
+  flex-flow: row wrap;
+  width: 100%;
+  justify-content: flex-end;
+}
+
+nav > ul > li {
+  padding-left: 10px;
+  padding-right: 10px;
+  cursor: pointer;
+  line-height: 50px;
+  background-color: var(--primary);
+  transition-property: background-color;
+  transition-duration: var(--transition-duration);
+  transition-timing-function: ease-in-out;
+  user-select: none;
+  -moz-user-select: none;
+}
+
+nav > ul > li:hover {
+  background-color: var(--primary-lighten);
+}
+
+nav > ul > li:active {
+  background-color: var(--primary);
+}
+
+nav > ul > li.logo {
+  justify-self: flex-start;
+  margin-right: auto;
+}
+
+nav > ul > li.menu {
+  justify-self: flex-end;
+  margin-left: auto;
+}

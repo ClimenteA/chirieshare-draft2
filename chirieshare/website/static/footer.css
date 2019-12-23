@@ -1,0 +1,27 @@
+footer {
+  display: flex;
+  flex-direction: row;
+  min-height: 90px;
+  padding: 2rem;
+  background-color: #101010;
+  color: var(--whiteish);
+
+}
+
+
+footer a {
+  color: var(--greyish);
+  opacity: .5;
+  padding: 5px;
+  margin: 0 auto;
+}
+
+footer a:hover {
+  opacity: 100;
+}
+
+@media only screen and (max-width: 640px) {
+  footer {
+    flex-direction: column;
+  }
+}

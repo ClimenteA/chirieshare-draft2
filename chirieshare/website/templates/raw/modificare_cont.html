@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="./css/styles.css" />
+    <link rel="stylesheet" href="./css/listings.css" />
+    <link rel="stylesheet" href="./css/add_listing.css" />
+    <style>
+      .filters-inputs {grid-template-columns: 1fr;}
+    </style>
+    <title>Modificare cont</title>
+  </head>
+  <body>
+    <header>
+      <nav>
+        <ul>
+          <li class="logo"><img src="./icons/logo_white.svg" /></li>
+          <li class="menu"><img src="./icons/menu.svg" /></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <div class="filters">
+        <div class="filters-inputs">
+
+          <label for="nume">
+            <span>Nume complet</span>
+            <input type="text" id="nume" placeholder="Ex: Popesco Dragos" />
+          </label>
+
+          <label for="ocupatie">
+            <span>Ocupatie</span>
+            <input type="text" id="ocupatie" placeholder="Ex: Inginer" />
+          </label>
+          
+          <div class="mixt">
+            <label for="sex">
+              <span>Sex (M/F)</span>
+              <input type="text" id="sex" placeholder="Ex: M" />
+            </label>
+
+            <label for="varsta">
+              <span>Varsta</span>
+              <input type="tel" id="varsta" placeholder="Ex: 28" />
+            </label>
+
+            <label for="buget">
+              <span>Buget (Euro)</span>
+              <input type="tel" id="buget" placeholder="Ex: 200" />
+            </label>
+          </div>
+
+          <div class="fluid-over-grid">
+            <label for="descriere">
+              <span>Despre mine</span>
+              <textarea
+                id="descriere"
+                placeholder="Ex: Introdu cat mai multe detalii"
+              ></textarea>
+            </label>
+          </div>
+        </div>
+
+        <div class="center">
+          <label class="fluid-over-grid">Imagine profil <span class="tip">(0 incarcate)</span></label>
+          <div class="file-input custom">
+            <input type="file" name="img1" />
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top:2rem;"></div>
+      <div class="center">
+        <button class="lg complementary bold">
+          ACTUALIZEAZA
+        </button>
+        <div style="margin-bottom: 2rem;"></div>
+        <button class="secondary bold">
+          Sterge cont
+        </button>
+      </div>
+      <div style="margin-top:2rem;"></div>
+    </main>
+
+    <footer>
+      <a href="#">Politica Cookies</a>
+      <a href="#">Politica de Confidentialitate</a>
+      <a href="#">Termeni si Conditii</a>
+      <a href="#">Intrebari frecvente</a>
+      <a href="#">Contact</a>
+    </footer>
+
+    <!-- <div class="tested-element">
+      <nav>
+        <ul>
+          <li class="logo">LOGO</li>
+          <li class="menu">Menu</li>
+        </ul>
+      </nav>
+
+      <h2>Buttons</h2>
+      <button>a button</button>
+
+      <button class="fluid">button</button>
+      <a class="btn fluid" href="#">anchor btn</a>
+
+      <button class="outlined">button</button>
+
+      <h2>Input text/tel</h2>
+
+      <label for="loc">
+        <span class="secondary-text">Localitate</span>
+        <input type="text" id="loc" placeholder="Ex: text input" />
+      </label>
+
+      <label for="zona">
+        <span>Zona</span>
+        <input type="tel" id="zona" placeholder="Ex: tel input" />
+      </label>
+    </div>
+
+    <h2>Small tip</h2>
+
+    <span class="tip">
+      Filtrele se fac automat pe baza anunturilor adaugate la favorite!
+    </span>
+
+    <h2>Simple card with title text content and right corner info</h2>
+
+    <article class="card">
+      <h3 class="title">Descriere</h3>
+      <p>
+        Apartamentul este situat aproape de supermarchet, de statiile de
+        autobuz. Se gaseste din pacate greu loc de parcare, dar daca ai
+        bicicleta poti sa o iei in apartament.
+      </p>
+      <span class="right bold secondary-text"> Pret: 200 euro </span>
+    </article>
+
+    <h2>User card with image info and contact details</h2>
+
+    <article class="card user">
+      <section class="profile">
+        <img src="./pics/ca.jpg" />
+        <span class="name">Climente Alin</span>
+        <span class="about">Inginer, M, 28 ani</span>
+      </section>
+
+      <section class="contact">
+        <h3 class="bold">Contact</h3>
+        <button class="darkish">07151321251</button>
+        <button class="darkish">
+          alin.climente@gmail.com
+        </button>
+      </section>
+    </article>
+
+    <h2>product card with info about price, title and favorite</h2>
+
+    <article class="card product">
+      <img src="./pics/1.jpg" />
+      <img class="fav" src="./icons/favorite.svg" />
+      <span class="btn complementary price"> 300 euro </span>
+
+      <h3 class="title">
+        Ap. 2 camere. Iasi, Piata Colentina
+        sssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
+      </h3>
+    </article>
+
+    <footer>
+      Some data
+    </footer>
+
+    <style>
+      body {
+        background: white;
+      }
+    </style> -->
+  </body>
+</html>

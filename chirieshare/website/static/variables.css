@@ -1,0 +1,102 @@
+:root {
+  --primary: #454545;
+  --primary-lighten: #525151;
+  --secondary: #ee6352;
+  --secondary-lighten: #eb7060;
+  --complementary: #4dc67d;
+  --complementary-lighten: #58cf88;
+  --whiteish: #f7f7f7;
+  --whiteish-lighten: rgb(245, 241, 241);
+  --greyish: #e5e5e5;
+  --darkish: #7c8f81;
+  --darkish-lighten: #85998a;
+
+  --box-shadow: rgba(0, 0, 0, 0.25);
+  --border-radius: 5px;
+  --margin: 7px 0px 7px 0px;
+  --transition-duration: 0.15s;
+}
+
+/* For background color */
+
+.primary {
+  background: var(--primary) !important;
+}
+
+.primary-lighten {
+  background: var(--primary-lighten) !important;
+}
+
+.secondary {
+  background: var(--secondary) !important;
+}
+
+.complementary {
+  background: var(--complementary) !important;
+}
+
+.whiteish {
+  background: var(--whiteish) !important;
+}
+
+.greyish {
+  background: var(--greyish) !important;
+}
+
+.darkish {
+  background: var(--darkish) !important;
+}
+
+.darkish-lighten {
+  background: var(--darkish-lighten) !important;
+}
+
+/* For text color */
+
+.primary-text {
+  color: var(--primary) !important;
+}
+
+.primary-lighten-text {
+  color: var(--primary-lighten) !important;
+}
+
+.secondary-text {
+  color: var(--secondary) !important;
+}
+
+.complementary-text {
+  color: var(--complementary) !important;
+}
+
+.whiteish-text {
+  color: var(--whiteish) !important;
+}
+
+.greyish-text {
+  color: var(--greyish) !important;
+}
+
+.darkish-text {
+  color: var(--darkish) !important;
+}
+
+.darkish-lighten-text {
+  background: var(--darkish-lighten) !important;
+}
+
+/* ubuntu-regular - latin */
+@font-face {
+  font-family: "Ubuntu";
+  font-style: normal;
+  font-weight: 400;
+  src: local("Ubuntu Regular"), local("Ubuntu-Regular"),
+    url("./fonts/ubuntu-v13-latin-regular.woff2") format("woff2"),
+    /* Chrome 26+, Opera 23+, Firefox 39+ */
+      url("./fonts/ubuntu-v13-latin-regular.woff") format("woff"); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+
+body {
+  font-family: "Ubuntu", "Segoe UI", "Tahoma", "Geneva", "Verdana", "sans-serif";
+  color: var(--primary);
+}

@@ -1,0 +1,7 @@
+main {
+  display: grid;
+  position: relative;
+  grid-template-columns: 1fr;
+  justify-self: center;
+  margin: 15px;
+}

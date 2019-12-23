@@ -1,0 +1,61 @@
+.filters {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.filters-inputs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-column-gap: 2rem;
+}
+
+@media only screen and (max-width: 640px) {
+  .filters-inputs {
+    grid-template-columns: 1fr;
+  }
+
+  input[type="tel"],
+  input[type="text"] {
+    width: 300px;
+  }
+}
+
+main {
+  display: grid;
+  position: relative;
+  grid-template-columns: 1fr;
+  justify-self: center;
+}
+
+.listings {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 2rem;
+  max-width: 900px;
+}
+
+.listings > article.card {
+  margin: 0;
+}
+
+@media only screen and (max-width: 960px) {
+  .listings {
+    grid-template-columns: 1fr;
+  }
+}
+
+.filters-actions {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+@media only screen and (max-width: 420px) {
+  .filters-actions {
+    flex-direction: column;
+  }
+}

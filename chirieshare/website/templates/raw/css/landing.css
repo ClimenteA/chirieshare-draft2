@@ -1,0 +1,37 @@
+body {
+  background: url("oras.jpg") center no-repeat;
+  background-size: cover;
+  grid-row-gap: 0px !important;
+}
+
+header + main {
+  background: linear-gradient(180deg, rgba(131, 151, 136, 0.6) 0%, rgba(11, 9, 9, 0.6) 100%), rgba(81, 73, 103, 0.4);
+}
+
+.outlined {
+  background: transparent;
+  border: 2px solid var(--complementary);
+  color: var(--whiteish);
+  margin-bottom: 2rem;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  place-content: center center;
+}
+
+
+.landing-action {
+  width: 320px;
+  margin: 0 auto;
+}
+
+.landing-action > p {
+  margin-top: 1rem;
+}
+
+.landing-action > button {
+  margin-top: 2rem;
+  margin-left: 110px;
+}

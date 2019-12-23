@@ -1,0 +1,91 @@
+body {
+  min-height: 100vh;
+}
+
+ul.images li > img {
+  height: 420px;
+  min-width: 300px;
+  width: inherit;
+  object-fit: cover;
+  border-radius: 20px;
+  box-shadow: 0px 6px 6px var(--box-shadow);
+}
+
+@media only screen and (max-width: 641px) {
+  .carousel {
+    width: 100vw !important;
+  }
+
+  ul.images li > img {
+    height: 380px;
+    width: inherit;
+  }
+}
+
+@media only screen and (max-width: 550px) {
+  ul.images li > img {
+    height: 350px;
+    width: inherit;
+  }
+}
+
+@media only screen and (max-width: 420px) {
+  ul.images li > img {
+    height: 320px;
+  }
+}
+
+@media only screen and (max-width: 320px) {
+  ul.images li > img {
+    height: 280px;
+  }
+}
+
+.carousel {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 640px;
+}
+
+.carousel > .title {
+  font-weight: bold;
+}
+
+.carousel > #prev,
+.carousel > #next {
+  position: absolute;
+  height: 40px;
+  width: 40px;
+  z-index: 2;
+  border-radius: var(--border-radius);
+  top: calc(50% - 20px);
+}
+
+.carousel > #prev {
+  left: 1rem;
+}
+
+.carousel > #next {
+  right: 1rem;
+}
+
+.carousel > #prev:hover,
+.carousel > #next:hover {
+  background: var(--secondary);
+}
+
+button > img {
+  height: 15px;
+  width: 15px;
+}
+
+main {
+  display: grid;
+  /* flex-direction: column; */
+  grid-gap: 1rem;
+  justify-content: center;
+  align-items: center;
+}

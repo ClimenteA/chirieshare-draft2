@@ -1,0 +1,29 @@
+body {
+  display: grid;
+  max-width: 1366px !important;
+  min-width: 340px !important;
+  grid-template-areas:
+    "header"
+    "main"
+    "footer";
+  grid-template-columns: 1fr;
+  grid-template-rows: 50px 1fr auto;
+  grid-row-gap: 15px;
+  background-color: var(--greyish);
+  margin: 0 auto;
+}
+
+header {
+  grid-area: header;
+  /* background: blue; */
+}
+
+main {
+  grid-area: main;
+  /* background: green; */
+}
+
+footer {
+  grid-area: footer;
+  /* background: yellow; */
+}

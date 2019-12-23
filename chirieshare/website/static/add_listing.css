@@ -1,0 +1,14 @@
+.mixt {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.mixt > label > input {
+  width: 85px;
+}
+
+.images {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 1rem;
+}
