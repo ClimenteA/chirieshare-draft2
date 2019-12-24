@@ -27,8 +27,19 @@ urlpatterns = [
     path('anunturi/', views.anunturi, name="anunturi"),
     path('anunturi/<localitate>/<zona>/<pret>/<camera>/<apartament>/', views.anunturi, name="anunturi"),
     path('detalii-anunt/<id_anunt>/', views.detalii_anunt, name="detalii_anunt"),
+    path('cont/', views.cont, name="cont"),
     path('cont/<id_utilizator>/', views.cont, name="cont"),
+    path('actualizare-cont/', views.actualizare_cont, name="actualizare_cont"),
     path('actualizare-cont/<id_utilizator>/', views.actualizare_cont, name="actualizare_cont"),
 
     path('admin/', admin.site.urls),
 ]
+
+
+#Serving images during dev
+from django.conf import settings 
+
+if settings.DEBUG:
+    from django.conf.urls.static import static
+    #this line makes images from media folder available via url media/imgname.png
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) 

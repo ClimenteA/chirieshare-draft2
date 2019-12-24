@@ -116,6 +116,13 @@ USE_L10N = True
 USE_TZ = True
 
 
+# Media files (profile images, files, videos, etc)
+# https://wsvincent.com/django-image-uploads/
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 

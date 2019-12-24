@@ -22,8 +22,8 @@ def anunturi(request):
 def detalii_anunt(request, id_anunt):
     return render(request, "detalii_anunt.html", {})
 
-def cont(request, id_utilizator):
+def cont(request, id_utilizator=None):
     return render(request, "cont.html", {})
 
-def actualizare_cont(request, id_utilizator):
+def actualizare_cont(request, id_utilizator=None):
     return render(request, "actualizare_cont.html", {})
