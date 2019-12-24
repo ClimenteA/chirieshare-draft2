@@ -22,6 +22,17 @@ class Utilizator(models.Model):
         Un utilizator poate avea unul sau mai multe anunturi postate si/sau unul sau mai multe anunturi salvate la favorite
     """
 
+    nume       = 
+    email      =
+    parola     =
+    descriere  =
+    ocupatie   =
+    sex        =
+    varsta     = 
+    buget      = 
+    img        =
+    tip_cont   = 
+
 
 class Anunt(models.Model):
     """
@@ -48,6 +59,13 @@ class Anunt(models.Model):
 
         Un anunt poate avea unul sau mai multi utilizatori interesati de share (sheriasi)
     """
+
+    localitate = models.CharField(max_length=50)
+    zona = models.CharField(max_length=100)
+    pret = models.PositiveIntegerField()
+
+
+
     
 
 class Favorite(models.Model):
