@@ -33,7 +33,7 @@ main {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-gap: 2rem;
-  max-width: 900px;
+  max-width: 950px;
 }
 
 .listings > article.card {

@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %} 
+    <link rel="stylesheet" href="{% static 'listings.css' %}" />
+    <link rel="stylesheet" href="{% static 'add_listing.css' %}" />
+{% endblock %}
+
+{% block title %}Actualizare cont{% endblock %}
+
+{% block content %}
+
+<style>
+    .filters-inputs{grid-template-columns: 1fr;}
+</style>
+
+<div class="filters">
+    <div class="filters-inputs">
+
+      <label for="nume">
+        <span>Nume complet</span>
+        <input type="text" id="nume" placeholder="Ex: Popesco Dragos" />
+      </label>
+
+      <label for="ocupatie">
+        <span>Ocupatie</span>
+        <input type="text" id="ocupatie" placeholder="Ex: Inginer" />
+      </label>
+      
+      <div class="mixt">
+        <label for="sex">
+          <span>Sex (M/F)</span>
+          <input type="text" id="sex" placeholder="Ex: M" />
+        </label>
+
+        <label for="varsta">
+          <span>Varsta</span>
+          <input type="tel" id="varsta" placeholder="Ex: 28" />
+        </label>
+
+        <label for="buget">
+          <span>Buget (Euro)</span>
+          <input type="tel" id="buget" placeholder="Ex: 200" />
+        </label>
+      </div>
+
+      <div class="fluid-over-grid">
+        <label for="descriere">
+          <span>Despre mine</span>
+          <textarea
+            id="descriere"
+            placeholder="Ex: Introdu cat mai multe detalii"
+          ></textarea>
+        </label>
+      </div>
+    </div>
+
+    <div class="center">
+      <label class="fluid-over-grid">Imagine profil <span class="tip">(0 incarcate)</span></label>
+      <div class="file-input custom">
+        <input type="file" name="img1" />
+      </div>
+    </div>
+  </div>
+
+  <div style="margin-top:2rem;"></div>
+  <div class="center">
+    <button class="lg complementary bold">
+      ACTUALIZEAZA
+    </button>
+    <div style="margin-bottom: 2rem;"></div>
+    <button class="secondary bold">
+      Sterge cont
+    </button>
+  </div>
+
+{% endblock %}

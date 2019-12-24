@@ -21,6 +21,7 @@ main {
   place-content: center center;
 }
 
+footer {margin-top: 0;}
 
 .landing-action {
   width: 320px;

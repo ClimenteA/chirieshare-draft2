@@ -7,3 +7,16 @@ body {
   max-width: 320px;
   margin-top: 1rem;
 }
+
+.g2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 1rem;
+  margin-top: 1rem;
+}
+
+@media only screen and (max-width: 420px) { 
+  .g2 {
+    display: block;
+  }
+}

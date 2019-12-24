@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %} 
+    <link rel="stylesheet" href="{% static 'listings.css' %}" />
+{% endblock %}
+
+{% block title %}Cont utilizator{% endblock %}
+
+
+{% block content %}
+
+<article class="card user fluid">
+    <section class="profile">
+      <img src="{% static 'ca.jpg' %}" />
+      <span class="name">Climente Alin</span>
+      <span class="about">Inginer, M, 28 ani</span>
+    </section>
+
+    <section class="contact">
+      <h3 class="bold">Contact</h3>
+      <button class="darkish">07151321251</button>
+      <button class="darkish">
+        alin.climente@gmail.com
+      </button>
+    </section>
+  </article>
+
+  <article class="card fluid">
+    <h3 class="title">Despre mine</h3>
+    <p>
+      Caut camera in apartament in zona Podu Ros. As vrea ca apartamentul sa
+      aiba si un balcon sau masina de uscat hainele. Deasemeni toate cele
+      necesare aragaz, frigider etc..
+    </p>
+    <span class="right bold secondary-text"> Buget: 200 euro </span>
+  </article>
+
+  <article class="card fluid">
+    <h3 class="title">Anunturi postate</h3>
+    <p class="bold"></p>
+  </article>
+
+  <article class="card fluid">
+    <h3 class="title">Colegi de share</h3>
+    <p class="bold"></p>
+    </button>
+  </article>
+
+  <button class=" complementary bold">
+    Actualizeaza contul
+  </button>
+
+  <button class=" secondary bold">
+    Upgrade la Premium*
+  </button>
+
+  <p class="tip">
+    * Utilizatorii premium au mai multe avantaje (click pe upgrade la
+    premium pentru a vedea care sunt acestea)
+  </p>
+
+  {% endblock %}

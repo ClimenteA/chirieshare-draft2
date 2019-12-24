@@ -7,6 +7,11 @@ class Utilizator(models.Model):
         email           - se va loga cu emailul
         parola          - *** 
         descriere       - informatiile despre utilizator scrise de acesta pentru celilati potential colegi de apartament
+        ocupatie        - tipul jobului
+        sex             - mf
+        varsta          - 
+        buget           - 
+        img             - imagine profil
         tip_cont  - 
             regular: cont gratis poate avea activ doar un anunt, 
             premium: cont platit poate avea activ unul sau mai multe anunturi, 
@@ -38,6 +43,8 @@ class Anunt(models.Model):
         img2                     - a doua imagine etc
         img3
         img4
+        img5
+        img6
 
         Un anunt poate avea unul sau mai multi utilizatori interesati de share (sheriasi)
     """
