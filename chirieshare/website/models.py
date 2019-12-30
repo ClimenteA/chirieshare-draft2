@@ -1,7 +1,23 @@
 from django.db import models
+# https://docs.djangoproject.com/en/3.0/topics/auth/customizing/#specifying-custom-user-model
+from django.contrib.auth.models import (
+    BaseUserManager, AbstractBaseUser
+)
 
 
-class Utilizator(models.Model):
+# class UtilizatorManager(BaseUserManager):
+#     """
+#         Functii folosite pentru crearea utilizatorilor
+#     """
+#     def creaza_utilizator(self, ):
+#         """ Creaza utilizator """
+#         pass
+
+
+
+
+
+class Utilizator(AbstractBaseUser):
     """ Tabel info utilizator 
         nume            - extras automat din email ([nume]@gmail.com)
         email           - se va loga cu emailul
@@ -11,27 +27,24 @@ class Utilizator(models.Model):
         sex             - mf
         varsta          - 
         buget           - 
-        img             - imagine profil
-        tip_cont  - 
-            regular: cont gratis poate avea activ doar un anunt, 
-            premium: cont platit poate avea activ unul sau mai multe anunturi, 
-                            poate vedea statistici cu privire la anunturile postate
-                            primeste prin email atunci cand un anunt a fost postat
-            admin  : poate gestiona utilizatorii si anunturile
+        imagine_profil  - imagine profil
+        cont_admin      - are access la backend, administratorul poate gestiona utilizatorii si anunturile
+        cont_premium: regular: cont gratis poate avea activ doar un anunt, 
+                      premium: cont platit poate avea activ unul sau mai multe anunturi, 
+                               poate vedea statistici cu privire la anunturile postate
+                               primeste prin email atunci cand un anunt a fost postat
 
         Un utilizator poate avea unul sau mai multe anunturi postate si/sau unul sau mai multe anunturi salvate la favorite
     """
-
-    nume       = 
-    email      =
-    parola     =
-    descriere  =
-    ocupatie   =
-    sex        =
-    varsta     = 
-    buget      = 
-    img        =
-    tip_cont   = 
+    #nume, email, parola = username, email, password - din default User
+    descriere  = models.CharField(max_length=255, blank=True)
+    ocupatie   = models.CharField(max_length=50, blank=True)
+    sex        = models.CharField(max_length=1, default="N", blank=True)
+    varsta     = models.PositiveIntegerField(max_value=99, default=0)
+    buget      = models.PositiveIntegerField(blank=False)
+    imagine_profil  = models.ImageField(blank=True, upload_to="utilizatori/")
+    cont_admin      = models.BooleanField(default=False)
+    cont_premium    = models.BooleanField(default=False)
 
 
 class Anunt(models.Model):
@@ -62,7 +75,7 @@ class Anunt(models.Model):
 
     localitate = models.CharField(max_length=50)
     zona = models.CharField(max_length=100)
-    pret = models.PositiveIntegerField()
+    pret = models.PositiveIntegerField(max_value=99, default=0)
 
 
 
