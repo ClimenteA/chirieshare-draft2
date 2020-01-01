@@ -1,8 +1,10 @@
 from django.contrib import admin
 
-#https://docs.djangoproject.com/en/3.0/ref/contrib/admin/
-from .models import Utilizator
+from .models import Utilizator, Anunt, Favorite, Sheriasi
 
-admin.site.register("Utilizator")
+admin.site.register(Utilizator)
+admin.site.register(Anunt)
+admin.site.register(Favorite)
+admin.site.register(Sheriasi)
 
 
