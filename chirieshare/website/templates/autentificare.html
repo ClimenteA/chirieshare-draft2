@@ -19,27 +19,33 @@
         <a href="{% url 'inregistrare' %}" class="btn sm darkish bold">register</a>
     </div>
 
-    <label for="email">
-        <span>Email</span>
-        <input type="text" id="email" />
-    </label>
+    <form action="{% url 'autentificare' %}" method="POST">
+        
+        {% csrf_token %}
 
-    <label for="parola">
-        <span>Parola</span>
-        <input type="text" id="parola" />
-    </label>
+        <label for="id_email">
+            <span>Email</span>
+            {{ form.email }}
+        </label>
 
-    <div style="margin-top:2rem;"></div>
-    <div class="center">
+        <label for="id_password">
+            <span>Parola</span>
+            {{ form.password }}
+        </label>
 
-    <button type="submit" class="lg complementary bold">
-        Intra in cont
-    </button>
+        <div style="margin-top:2rem;"></div>
+        <div class="center">
+
+        <button type="submit" class="lg complementary bold">
+            Intra in cont
+        </button>
+    </form>
 
     <p class="darkish-text agree-text">
         <a href="{% url 'resetare_parola' %}" class="underlined">Ti-ai uitat parola?</a>
     </p>
 
 </div>
+
 
 {% endblock %}

@@ -1,5 +1,8 @@
 input[type="tel"],
-input[type="text"] {
+input[type="text"],
+input[type="number"],
+input[type="email"],
+input[type="password"] {
   all: unset;
 }
 
@@ -23,7 +26,10 @@ textarea {
 }
 
 input[type="tel"],
-input[type="text"] {
+input[type="text"],
+input[type="number"],
+input[type="email"],
+input[type="password"] {
   display: inline-block;
   height: 40px;
   min-width: 30px;
@@ -45,12 +51,18 @@ input[type="text"] {
 
 input[type="tel"]:focus,
 input[type="text"]:focus,
+input[type="number"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
 textarea:focus {
   box-shadow: 0px 6px 5px var(--box-shadow);
 }
 
 label > input[type="tel"],
 label > input[type="text"],
+label > input[type="number"],
+label > input[type="email"],
+label > input[type="password"],
 label > textarea {
   display: flex;
   flex-direction: column;

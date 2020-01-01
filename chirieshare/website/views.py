@@ -1,12 +1,27 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from .forms import AutentificareForm, AnuntForm, FavoriteForm, SheriasiForm
+from django.contrib.auth import authenticate, login
 
 
 def pagina_de_prezentare(request):
     return render(request, "pagina_de_prezentare.html", {})
 
-def autentificare(request):
-    return render(request, "autentificare.html", {})
 
+def autentificare(request):
+    """ Auth si login utilizator """
+
+    if request.method == 'GET':
+        return render(request, "autentificare.html", {'form': AutentificareForm})
+    elif request.method == 'POST':
+        user = authenticate(email=request.POST['email'], password=request.POST['password'])
+        if user is not None:
+            login(request, user)
+            return redirect('anunturi')
+        else:
+            pass #creaza un error page!
+
+
+        
 def inregistrare(request):
     return render(request, "inregistrare.html", {})
 
