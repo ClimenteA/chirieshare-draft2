@@ -21,6 +21,7 @@
         </nav>
     </header>
 
+    
     <main>
         {% block content %}
         {% endblock %}
@@ -35,6 +36,39 @@
     <a href="#">Intrebari frecvente</a>
     <a href="#">Contact</a>
 </footer>
+
+
+{% if messages %}
+
+<link rel="stylesheet" href="{% static 'Toast.min.css' %}" />
+<script src="{% static 'Toast.min.js' %}"></script>
+
+{% for message in messages %}
+    <span class="none" id="flash">{{ message }} </span>
+    <span class="none" id="tag">{{ message.tags }}</span>
+{% endfor %}
+
+<script>
+
+    document.addEventListener("DOMContentLoaded", function(event){
+
+        let tag = document.getElementById("tag").innerText;
+
+        if (tag == 'error'){var typ = 'danger';}
+        else {var typ = tag}
+
+        new Toast({
+            message: document.getElementById("flash").innerText,
+            type: typ
+        });
+        
+    //DOM loaded    
+    });
+    
+</script>
+
+{% endif %}
+
   
 </body>
 </html>

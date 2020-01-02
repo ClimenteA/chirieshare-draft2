@@ -20,3 +20,12 @@ body {
     display: block;
   }
 }
+
+
+.none {
+  display: none;
+}
+
+.toastjs-btn {
+  color: var(--primary);
+}

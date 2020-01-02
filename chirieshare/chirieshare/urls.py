@@ -22,6 +22,7 @@ urlpatterns = [
     path('', views.pagina_de_prezentare, name="pagina_de_prezentare"),
     path('autentificare/', views.autentificare, name="autentificare"),
     path('inregistrare/', views.inregistrare, name="inregistrare"),
+    path('inregistrare/<activare_cont>', views.inregistrare, name="inregistrare"),
     path('resetare-parola/', views.resetare_parola, name="resetare_parola"),
     path('adauga-anunt/', views.adauga_anunt, name="adauga_anunt"),
     path('anunturi/', views.anunturi, name="anunturi"),
@@ -31,8 +32,6 @@ urlpatterns = [
     path('cont/<id_utilizator>/', views.cont, name="cont"),
     path('actualizare-cont/', views.actualizare_cont, name="actualizare_cont"),
     path('actualizare-cont/<id_utilizator>/', views.actualizare_cont, name="actualizare_cont"),
-
-    path('test-mail/', views.test_email),
 
     path('admin/', admin.site.urls),
 ]
