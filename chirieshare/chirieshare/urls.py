@@ -32,6 +32,8 @@ urlpatterns = [
     path('actualizare-cont/', views.actualizare_cont, name="actualizare_cont"),
     path('actualizare-cont/<id_utilizator>/', views.actualizare_cont, name="actualizare_cont"),
 
+    path('test-mail/', views.test_email),
+
     path('admin/', admin.site.urls),
 ]
 
