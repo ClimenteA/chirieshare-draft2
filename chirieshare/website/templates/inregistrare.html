@@ -33,7 +33,7 @@
         </label>
 
         <label for="confpass">
-            <span>Confirma parola</span>
+            <span id="confinfo">Confirma parola</span>
             <input type="password" id="confpass" />
         </label>
         
@@ -50,4 +50,26 @@
     </p>
 </div>
 
+
+<script>
+
+    document.addEventListener("DOMContentLoaded", function(event){
+
+        let pass1 = document.getElementById("id_password");
+        let pass2 = document.getElementById("confpass"); 
+
+        pass2.addEventListener("keyup", function(e){
+
+            if(pass1.value != pass2.value){
+                document.getElementById("confinfo").innerText = "Parolele nu sunt la fel!";
+            }else {
+                document.getElementById("confinfo").innerText = "Parola confirmata!";
+            }
+
+    },false);
+        
+    //DOM loaded    
+    });
+    
+</script>
 {% endblock %}
