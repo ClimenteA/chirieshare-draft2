@@ -49,11 +49,12 @@ class Utilizator(AbstractUser):
     descriere  = models.CharField(max_length=255, blank=True)
     ocupatie   = models.CharField(max_length=50, blank=True)
     sex        = models.CharField(max_length=1, default="N", blank=True)
+    token      = models.CharField(max_length=1, blank=True)
     varsta     = models.PositiveIntegerField(blank=True, null=True)
     buget      = models.PositiveIntegerField(blank=False, null=True)
     imagine_profil  = models.ImageField(blank=True, upload_to="utilizatori/")
     cont_premium    = models.BooleanField(default=False)
-
+    
     #Scoatem field/coloanele 
     first_name = None
     last_name  = None

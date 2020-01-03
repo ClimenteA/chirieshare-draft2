@@ -29,7 +29,7 @@ def autentificare(request):
             login(request, user)
             return redirect('anunturi')
         else:
-            messages.error(request, 'Emailul sau parola nu au fost gasite!')
+            messages.error(request, 'Date de logare incorecte!')
             return render(request, "autentificare.html", {'form': AutentificareForm})
 
 
@@ -44,11 +44,11 @@ def inregistrare(request, activare_cont=None):
         else:
             # Activare cont
             user = Utilizator.objects.get(pk=int(activare_cont.split("-")[0]))
-            if user.descriere == activare_cont:
+            if user.token == activare_cont:
                 user.is_active = True
-                user.descriere = ""
+                user.token = ""
                 user.save()
-                messages.success(request, 'Contul a fost activat cu success!')
+                messages.success(request, 'Contul a fost activat!')
                 return redirect('autentificare') 
             else:
                 messages.error(request, 'Contul nu a putut fi activat!')
@@ -60,28 +60,70 @@ def inregistrare(request, activare_cont=None):
             user = Utilizator.objects.create_user( email    = request.POST['email'], 
                                                    password = request.POST['password'])
         except:
-            messages.error(request, 'Emailul introdus este folosit! Reseteaza parola accesand linkul din emailul primit!')
-            return redirect('pagina_de_prezentare')
+            messages.error(request, 'Emailul introdus este folosit! Ti-ai uitat parola?')
+            return redirect('inregistrare')
 
         activare_cont_id = str(user.pk) + "-" + get_random_string()
         user.is_active = False
-        user.descriere = activare_cont_id
+        user.token = activare_cont_id
         
         # Trimite link de activare catre mailul utilizatorului
         send_mail("Activare cont chirieshare.ro", 
-                  f"Salut,\n\nAcceseaza linkul de mai jos pentru a activa contul:\n\nhttp://127.0.0.1:8000/inregistrare/{activare_cont_id}", 
-                  settings.EMAIL_HOST_USER, 
-                  [request.POST['email']])
+                f"Salut,\n\nAcceseaza linkul de mai jos pentru a activa contul:\n\nhttp://127.0.0.1:8000/inregistrare/{activare_cont_id}", 
+                settings.EMAIL_HOST_USER, 
+                [request.POST['email']])
     
         user.save()
 
-        messages.success(request, 'Acceseaza linkul de activare primit in email pentru activarea contului!')
-        return redirect('pagina_de_prezentare')
+        messages.success(request, 'Acceseaza linkul primit prin email pentru activarea contului!')
+        return redirect('autentificare')
 
         
+                
 
-def resetare_parola(request):
-    return render(request, "resetare_parola.html", {})
+def resetare_cont(request, resetare_cont_id=None):
+    
+    if request.method == 'GET':
+
+        if resetare_cont_id == None:
+            return render(request, "resetare_cont.html", {})
+        else:
+            user = Utilizator.objects.get(pk=int(resetare_cont_id.split("-")[0]))
+            
+            if user.token == resetare_cont_id:
+                user.delete()
+                messages.success(request, 'Contul a fost resetat! Introdu noile date de logare!')
+                return redirect('inregistrare') 
+            else:
+                messages.error(request, 'Pagina ceruta nu a fost gasita!')
+                return redirect('pagina_de_prezentare')
+
+    if request.method == 'POST':
+     
+        try: 
+            user = Utilizator.objects.get(email=request.POST['email'])
+        except:
+            messages.error(request, 'Emailul introdus nu exista!')
+            return redirect('resetare_cont')
+
+        resetare_cont_id = str(user.pk) + "-" + get_random_string()
+        user.token = resetare_cont_id
+        
+        # Trimite link de activare catre mailul utilizatorului
+        send_mail("Resetare cont chirieshare.ro", 
+                f"Salut,\n\nAcceseaza linkul de mai jos pentru a reseta contul:\n\nhttp://127.0.0.1:8000/resetare-cont/{resetare_cont_id}", 
+                settings.EMAIL_HOST_USER, 
+                [request.POST['email']])
+    
+        user.save()
+
+        messages.error(request, 'Reseteaza contul accesand linkul din emailul primit!')
+        return redirect('pagina_de_prezentare')
+
+    
+
+
+
 
 @login_required
 def adauga_anunt(request):

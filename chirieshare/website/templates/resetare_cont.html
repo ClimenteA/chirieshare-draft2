@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %} 
+    <link rel="stylesheet" href="{% static 'listings.css' %}" />
+{% endblock %}
+
+{% block title %}Resetare parola{% endblock %}
+
+
+{% block content %}
+
+<div class="filters">
+
+    <form action="{% url 'resetare_cont' %}" method="POST">
+
+        {% csrf_token %}
+
+        <label for="email">
+            <span>Email</span>
+            <input type="text" id="email" name="email"/>
+        </label>
+        
+        <div style="margin-top:1rem;"></div>
+        
+        <div class="center">
+            <button type="submit" class="lg secondary bold">
+                Reseteaza cont
+            </button>
+        </div>
+        
+    </form>
+</div>
+
+{% endblock %}
