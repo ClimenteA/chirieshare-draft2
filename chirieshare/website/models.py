@@ -88,6 +88,7 @@ class Anunt(models.Model):
         pret                     - int pretul in euro
         numar_camere             - int numarul camerelor libere
         numar_colegi             - int numarul colegilor de apartament/locuinta
+        apartament               - daca 'numar_colegi' este completat atunci se considera ca se inchiriaza pe camere
         mfx                      - str colegi doar baieti(m), doar fete(f), fete/baieti(x)
         descriere                - str descrierea locuintei in detaliu 
         titlu                    - generat automat din localitate + zona + pret 
@@ -104,8 +105,9 @@ class Anunt(models.Model):
     zona          = models.CharField(max_length=100, blank=False)
     pret          = models.PositiveIntegerField(blank=False)
     numar_camere  = models.PositiveIntegerField(blank=False)
-    numar_colegi  = models.PositiveIntegerField(blank=False)
-    mfx           =  models.CharField(max_length=1, blank=False)
+    numar_colegi  = models.PositiveIntegerField(blank=False, default=0)
+    apartament    = models.BooleanField() 
+    mfx           = models.CharField(max_length=1, blank=False)
     descriere     = models.TextField(max_length=250, blank=False)    
     img1 = models.ImageField(upload_to="anunturi/")
     img2 = models.ImageField(upload_to="anunturi/", blank=True)

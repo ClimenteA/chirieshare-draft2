@@ -8,92 +8,134 @@
 
 {% block title %}Adauga anunt{% endblock %}
 
-
 {% block content %}
     <h4 class="underlined darkish-text bold">Spre inchiriere</h4>
-    <div class="filters">
-    <div class="filters-actions">
-        <button class="sm secondary bold">ofer camere</button>
-        <span class="tip">sau</span>
-        <button class="sm darkish bold">ofer apartament</button>
-    </div>
-    <div class="filters-inputs">
-        <label for="loc">
-        <span>Localitate/Oras</span>
-        <input type="text" id="loc" placeholder="Ex: Iasi, Bucuresti.." />
-        </label>
+    
+    <form action="{% url 'adauga_anunt' %}" method="POST" enctype="multipart/form-data">
+        
+        {% csrf_token %}
 
-        <label for="zona">
-        <span>Zona/Reper</span>
-        <input type="text" id="zona" placeholder="Ex: Centru Vechi.." />
-        </label>
+        <div class="filters">
+        <div class="filters-actions">
+            <button id="cam" class="sm secondary bold">ofer camere</button>
+            <span class="tip">sau</span>
+            <button id="ap" class="sm darkish bold">ofer apartament</button>
+            <input id="ap_val" type="hidden" name="apartament" value="0">
+        </div>
+        <div class="filters-inputs">
+            <label for="loc">
+            <span>Localitate/Oras</span>
+            <input type="text" id="loc" pattern="[A-Za-z]{3,50}" placeholder="Ex: Iasi, Bucuresti.." name="localitate" required/>
+            
+            </label>
 
-        <label for="pret">
-        <span>Pret (in euro)</span>
-        <input type="tel" id="pret" placeholder="Ex: 320" />
-        </label>
+            <label for="zona">
+            <span>Zona/Reper</span>
+            <input type="text" id="zona" pattern="[A-Za-z0-9]{3,50}" placeholder="Ex: Centru Vechi.." name="zona" required/>
+            </label>
 
-        <div class="mixt">
-        <label for="camere">
-            <span>Nr. camere</span>
-            <input type="tel" id="camere" placeholder="Ex: 2" />
-        </label>
+            <label for="pret">
+            <span>Pret (in euro)</span>
+            <input type="tel" id="pret" pattern="[0-9]+" placeholder="Ex: 320" name="pret" required/>
+            </label>
 
-        <label for="colegi">
-            <span>Nr. colegi</span>
-            <input type="tel" id="colegi" placeholder="Ex: 1" />
-        </label>
+            <div class="mixt">
+            <label for="camere">
+                <span>Nr. camere</span>
+                <input type="tel" id="camere" pattern="[0-9]+" placeholder="Ex: 2" name="numar_camere" required/>
+            </label>
 
-        <label for="sex">
-            <span>M/F/Mixt</span>
-            <input type="tel" id="sex" placeholder="Ex: M" />
-        </label>
+            <label for="colegi">
+                <span>Nr. colegi</span>
+                <input type="tel" id="colegi" pattern="[0-9]+" placeholder="Ex: 1" name="numar_colegi"/>
+            </label>
+
+            <label for="sex">
+                <span>M/F/Mixt</span>
+                <input type="tel" id="sex" pattern="m|M|F|f|mixt|MIXT|Mixt"  placeholder="Ex: M" name="mfx"/>
+            </label>
+            </div>
+
+            <div class="fluid-over-grid">
+            <label for="descriere">
+                <span>Descriere</span>
+                <textarea
+                id="descriere"
+                placeholder="Ex: Introdu cat mai multe detalii"
+                name="descriere"
+                ></textarea>
+            </label>
+            </div>
         </div>
 
-        <div class="fluid-over-grid">
-        <label for="descriere">
-            <span>Descriere</span>
-            <textarea
-            id="descriere"
-            placeholder="Ex: Introdu cat mai multe detalii"
-            ></textarea>
-        </label>
-        </div>
-    </div>
+        <div class="images">
+            <label class="fluid-over-grid">Imagini</label>
 
-    <div class="images">
-        <label class="fluid-over-grid">Imagini <span class="tip">(0 incarcate)</span></label>
+            <div class="file-input custom">
+            <input type="file" name="img1" accept="image/*" required/>
+            </div>
+            <div class="file-input custom">
+            <input type="file" name="img2" accept="image/*"/>
+            </div>
+            <div class="file-input custom">
+            <input type="file" name="img3" accept="image/*"/>
+            </div>
+            <div class="file-input custom">
+            <input type="file" name="img4" accept="image/*"/>
+            </div>
+            <div class="file-input custom">
+            <input type="file" name="img5" accept="image/*"/>
+            </div>
+            <div class="file-input custom">
+            <input type="file" name="img6" accept="image/*"/>
+            </div>
+        </div>
+        </div>
 
-        <div class="file-input custom">
-        <input type="file" name="img1" />
-        </div>
-        <div class="file-input custom">
-        <input type="file" name="img2" />
-        </div>
-        <div class="file-input custom">
-        <input type="file" name="img3" />
-        </div>
-        <div class="file-input custom">
-        <input type="file" name="img4" />
-        </div>
-        <div class="file-input custom">
-        <input type="file" name="img5" />
-        </div>
-        <div class="file-input custom">
-        <input type="file" name="img6" />
-        </div>
-    </div>
-    </div>
-
-    <div style="margin-top:2rem;"></div>
-    <div class="center">
-    <button class="lg complementary bold">
-        ADAUGA ANUNT
-    </button>
+        <div style="margin-top:2rem;"></div>
+        <div class="center">
+        <button type="submit" class="lg complementary bold">
+            ADAUGA ANUNT
+        </button>
+        
+    </form>
+    
     <p class="darkish-text agree-text">
         Prin adaugarea unui anunt esti automat de accord cu
         <a href="#" class="bold underlined">Termenii si conditiile</a>
     </p>
     </div>
+
+
+
+<script>
+
+    document.addEventListener("DOMContentLoaded", function(event){
+
+        let cambtn = document.getElementById("cam");
+        let apbtn = document.getElementById("ap");
+        let ap_val = document.getElementById("ap_val"); 
+        let not_selected = "sm darkish bold";
+        let selected = "sm secondary bold";
+
+        cambtn.addEventListener("click", function(e){
+            e.preventDefault();
+            cambtn.className = selected;
+            apbtn.className  = not_selected;
+            ap_val.value = "0";
+        },false);
+
+        apbtn.addEventListener("click", function(e){
+            e.preventDefault();
+            cambtn.className = not_selected;
+            apbtn.className  = selected;
+            ap_val.value = "1";
+        },false);
+
+        
+    //DOM loaded    
+    });
+    
+</script>
 
 {% endblock %}

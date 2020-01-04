@@ -12,7 +12,6 @@ from django.contrib import messages
 
 
 
-
 def pagina_de_prezentare(request):
     return render(request, "pagina_de_prezentare.html", {})
 
@@ -122,12 +121,24 @@ def resetare_cont(request, resetare_cont_id=None):
 
     
 
-
-
-
 @login_required
 def adauga_anunt(request):
-    return render(request, "adauga_anunt.html", {})
+    """ Adauga un anunt """
+
+    if request.method == "GET":
+        return render(request, "adauga_anunt.html", {})
+    
+    elif request.method == "POST":
+        form = AnuntForm(request.POST, request.FILES, instance=request.user) 
+        if form.is_valid():
+            Anunt(postat_de=request.user, **form.cleaned_data).save()
+            messages.success(request, 'Anuntul a fost adaugat!')
+            return render(request, "adauga_anunt.html", {})
+        else:
+            messages.error(request, 'Datele cerute nu au fost completate corect!')
+            return render(request, "adauga_anunt.html", {})
+    
+
 
 def anunturi(request):
     return render(request, "anunturi.html", {})
