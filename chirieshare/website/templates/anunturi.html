@@ -3,6 +3,12 @@
 
 {% block head %} 
     <link rel="stylesheet" href="{% static 'listings.css' %}" />
+    <style>
+      .filters-actions {margin-left: 30px;}
+    </style>
+    <link rel="stylesheet" href="{% static 'awesomplete.css' %}" />
+    <script src="{% static 'awesomplete.js' %}" async></script>
+    <script src="{% static 'mithril.js' %}" defer></script>
 {% endblock %}
 
 {% block title %}Anunturi{% endblock %}
@@ -14,12 +20,12 @@
     <div class="filters-inputs">
       <label for="loc">
         <span>Localitate</span>
-        <input type="text" id="loc" placeholder="Ex: Iasi, Bucuresti.." />
+        <input type="text" id="loc" name="localitate" placeholder="Ex: Iasi, Bucuresti.." />
       </label>
 
       <label for="zona">
         <span>Zona</span>
-        <input type="tel" id="zona" placeholder="Ex: Centru Vechi.." />
+        <input type="text" id="zona" name="zona" placeholder="Ex: Centru Vechi.." />
       </label>
     </div>
 
@@ -33,6 +39,8 @@
   <div style="margin-top:2rem;"></div>
 
   <div class="listings">
+
+  
     <article class="card product">
       <img src="{% static 'logo_placeholder.svg' %}" />
       <img class="fav" src="{% static '/icons/favorite.svg' %}" />
@@ -40,7 +48,6 @@
 
       <h3 class="title">
         Ap. 2 camere. Iasi, Piata Colentina
-        sssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
       </h3>
     </article>
 
@@ -84,4 +91,18 @@
   <p class="tip mtop mtop btm-right">
     Filtrele se fac automat! (pe baza anunturilor adaugate la favorite)
   </p>
+
+  <script>
+    var loc = document.getElementById("loc");
+    var awesomplete = new Awesomplete(loc);
+
+    awesomplete.minChars = 3;
+    awesomplete.maxItems = 5;
+    awesomplete.autoFirst = true;
+    awesomplete.filter = Awesomplete.FILTER_STARTSWITH;
+
+    awesomplete.list = ["Bucuresti", "Cluj-Napoca", "Timisoara", "Iasi", "Constanta", "Craiova", "Brasov", "Galati", "Ploiesti", "Oradea", "Braila", "Arad", "Pitesti", "Sibiu", "Bacau", "Targu Mures", "Baia Mare", "Buzau", "Botosani", "Satu Mare", "Suceava", "Ramnicu Valcea", "Drobeta-Turnu Severin", "Piatra-Neamt", "Targoviste", "Targu Jiu", "Focsani", "Tulcea", "Resita", "Slatina", "Bistrita", "Calarasi", "Giurgiu", "Deva", "Hunedoara", "Zalau", "Barlad", "Alba Iulia", "Sfantu Gheorghe", "Roman", "Vaslui", "Turda", "Medias", "Alexandria", "Voluntari", "Pipera (Voluntari)", "Slobozia", "Lugoj", "Medgidia", "Onesti", "Miercurea-Ciuc", "Petrosani", "Tecuci", "Mangalia", "Odorheiu Secuiesc", "Ramnicu Sarat", "Sighetu Marmatiei", "Campina", "Navodari", "Campulung", "Caracal", "Sacele", "Fagaras", "Dej", "Rosiori de Vede", "Mioveni", "Curtea de Arges", "Husi", "Reghin", "Sighisoara", "Pantelimon", "Pascani", "Oltenita", "Turnu Magurele", "Caransebes", "Falticeni", "Radauti", "Lupeni", "Dorohoi", "Vulcan", "Campia Turzii", "Zarnesti", "Borsa", "Popesti-Leordeni", "Codlea", "Carei", "Moinesti", "Petrila", "Sebes", "Tarnaveni", "Floresti", "Gherla", "Fetesti-Gara", "Buftea", "Cugir", "Moreni", "Gheorgheni", "Comanesti", "Salonta", "Cernavoda", "Targu Secuiesc", "Bailesti", "Campulung Moldovenesc", "Aiud", "Valea Caselor (Dragasani)", "Dragasani", "Bals", "Bocsa", "Motru", "Corabia", "Bragadiru", "Urziceni", "Rasnov", "Rasnov Romacril", "Buhusi", "Zimnicea", "Marghita", "Mizil", "Cisnadie", "Targu Neamt", "Calafat", "Vatra Dornei", "Adjud", "Gaesti", "Tandarei", "Gura Humorului", "Chitila", "Viseu de Sus", "Otopeni", "Ludus", "Dragu-Brad", "Brad", "Valu lui Traian", "Cumpana", "Sannicolau Mare", "Valenii de Munte", "Jilava", "Dabuleni", "Filiasi", "Blaj", "Ovidiu", "Simleu Silvaniei", "Matca", "Pecica", "Rovinari", "Videle", "Baicoi", "Pucioasa", "Jimbolia", "Baia Sprie", "Targu Frumos", "Vicovu de Sus", "Orsova", "Sinaia", "Negresti-Oas", "Beius", "Santana", "Pechea", "Simeria", "Boldesti-Scaeni", "Poienile de sub Munte", "Valea lui Mihai", "Covasna", "Targu Ocna", "Toplita", "Sovata", "Otelu Rosu", "Oravita", "Moisei", "Harsova", "Murfatlar", "Beclean", "Poiana Mare", "Huedin", "Babadag", "Marasesti", "Topoloveni", "Sangeorgiu de Mures", "Jibou", "Sabaoani", "Hateg", "Avrig", "Darmanesti", "Marginea", "Moldova Veche", "Ineu", "Bolintin-Vale", "Mihail Kogalniceanu", "Macin", "Tomesti", "Nasaud", "Uricani", "Rosu", "Calan", "Borcea", "Afumati", "Domnesti", "Draganesti-Olt", "Cristuru Secuiesc", "1 Decembrie", "Lumina", "Fetesti", "Mogosoaia", "Modelu", "Dumbravita", "Seini", "Alesd", "Sangeorz-Bai", "Curtici", "Darabani", "Nadlac", "Victoria", "Amara", "Branesti", "Harlau", "Lipova", "Techirghiol", "Agnita", "Sacueni", "Titu", "Siret", "Segarcea", "Odobesti", "Podu Iloaiei", "Ocna Mures", "Urlati", "Strehaia", "Tasnad", "Cajvana", "Tuzla", "Sadova", "Vlahita", "Stei", "Diosig", "Cobadin", "Gilau", "Vladimirescu", "Dancu", "Bumbesti-Jiu", "Busteni", "Peretu", "Cudalbi", "Bosanci", "Balotesti", "Lunca Cetatuii", "Dragalina", "Fieni", "Chisineu-Cris", "Balan", "Sandominic", "Strejnicu", "Baciu", "Fundulea", "Ianca", "Remetea", "Fagetel (Remetea)", "Roseti", "Breaza de Sus", "Cornetu", "Insuratei", "Apahida", "Berceni", "Vicovu de Jos", "Savinesti (Poiana Teiului)", "Savinesti", "Teius", "Barbulesti", "Plosca", "Toflea", "Magurele", "Feldru", "Anina", "Valea Mare (Negresti)", "Negresti", "Peris", "Fundeni", "Giroc", "Baile Borsa", "Oituz", "Rucar", "Curcani", "Valea Mare (Babeni)", "Babeni", "Rodna", "Deta", "Ruscova", "Intorsura Buzaului", "Pancota", "Glina", "Talmaciu", "Copsa Mica", "Motatei", "Gugesti", "Schela Cladovei", "Sancraiu de Mures", "Iernut", "Targu Lapus", "Maieru", "Prejmer", "Pogoanele", "Dobroesti", "Baraolt", "Arbore", "Homocea", "Corund", "Tufesti", "Giarmata", "Baia", "Dumbraveni", "Eforie Nord", "Horodnic de Sus", "Greci", "Tudora", "Straja", "Rasinari", "Sebis", "Raducaneni", "Siria", "Paunesti", "Saveni", "Tunari"];
+
+
+  </script>
 {% endblock %}
