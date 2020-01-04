@@ -132,7 +132,40 @@
             ap_val.value = "1";
         },false);
 
-        
+
+    //In cazul in care utilizatorul selecteaza apartament in loc de camere
+    document.getElementById("colegi").addEventListener("change", function(event){
+        cambtn.className = selected;
+        apbtn.className  = not_selected;
+        ap_val.value = "0";
+    //end event
+    }, false);
+
+    //Image preview before upload
+    var img_containers = document.querySelectorAll(".file-input, .custom");
+
+    img_containers.forEach(file_input => {
+        file_input.children[0].addEventListener("change", function(e) {
+            
+            var img_file = e.target.files;
+            
+            var reader = new FileReader();
+
+            reader.onload = function(e) {
+                var img = document.createElement("img");
+                img.setAttribute('src', e.target.result);
+                img.style.objectFit = "contain";
+                file_input.appendChild(img);
+            };
+
+            reader.readAsDataURL(img_file[0]);
+
+        //endfunc
+        }, false);
+    //endfor
+    });
+
+
     //DOM loaded    
     });
     
