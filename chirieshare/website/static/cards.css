@@ -109,6 +109,7 @@ article.card.product > img.fav {
   cursor: pointer;
 }
 
+
 article.card.product > span.price {
   position: absolute;
   top: 0;

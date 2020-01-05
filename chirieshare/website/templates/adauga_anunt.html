@@ -4,6 +4,9 @@
 {% block head %} 
     <link rel="stylesheet" href="{% static 'listings.css' %}" />
     <link rel="stylesheet" href="{% static 'add_listing.css' %}" />
+
+    <link rel="stylesheet" href="{% static 'awesomplete.css' %}" />
+    <script src="{% static 'awesomplete.js' %}" defer></script>
 {% endblock %}
 
 {% block title %}Adauga anunt{% endblock %}
@@ -25,13 +28,13 @@
         <div class="filters-inputs">
             <label for="loc">
             <span>Localitate/Oras</span>
-            <input type="text" id="loc" pattern="[A-Za-z]{3,50}" placeholder="Ex: Iasi, Bucuresti.." name="localitate" required/>
+            <input type="text" id="loc" pattern="[A-Za-z\s]{3,50}" placeholder="Ex: Iasi, Bucuresti.." name="localitate" required/>
             
             </label>
 
             <label for="zona">
             <span>Zona/Reper</span>
-            <input type="text" id="zona" pattern="[A-Za-z0-9]{3,50}" placeholder="Ex: Centru Vechi.." name="zona" required/>
+            <input type="text" id="zona" pattern="[A-Za-z0-9\s]{3,50}" placeholder="Ex: Centru Vechi.." name="zona" required/>
             </label>
 
             <label for="pret">
@@ -112,6 +115,7 @@
 
     document.addEventListener("DOMContentLoaded", function(event){
 
+        //Toggle intre camere si apartament
         let cambtn = document.getElementById("cam");
         let apbtn = document.getElementById("ap");
         let ap_val = document.getElementById("ap_val"); 
@@ -135,12 +139,26 @@
 
     //In cazul in care utilizatorul selecteaza apartament in loc de camere
     document.getElementById("colegi").addEventListener("change", function(event){
-        cambtn.className = selected;
-        apbtn.className  = not_selected;
-        ap_val.value = "0";
+        if (event.target.value != 0){
+            cambtn.className = selected;
+            apbtn.className  = not_selected;
+            ap_val.value = "0";
+        }
     //end event
     }, false);
 
+
+    //Sugestii locatie
+    var localitate = new Awesomplete(document.getElementById("loc"));
+
+    localitate.minChars = 3;
+    localitate.maxItems = 5;
+    localitate.autoFirst = true;
+    localitate.filter = Awesomplete.FILTER_STARTSWITH;
+
+    localitate.list = ["Bucuresti", "Cluj-Napoca", "Timisoara", "Iasi", "Constanta", "Craiova", "Brasov", "Galati", "Ploiesti", "Oradea", "Braila", "Arad", "Pitesti", "Sibiu", "Bacau", "Targu Mures", "Baia Mare", "Buzau", "Botosani", "Satu Mare", "Suceava", "Ramnicu Valcea", "Drobeta-Turnu Severin", "Piatra-Neamt", "Targoviste", "Targu Jiu", "Focsani", "Tulcea", "Resita", "Slatina", "Bistrita", "Calarasi", "Giurgiu", "Deva", "Hunedoara", "Zalau", "Barlad", "Alba Iulia", "Sfantu Gheorghe", "Roman", "Vaslui", "Turda", "Medias", "Alexandria", "Voluntari", "Pipera (Voluntari)", "Slobozia", "Lugoj", "Medgidia", "Onesti", "Miercurea-Ciuc", "Petrosani", "Tecuci", "Mangalia", "Odorheiu Secuiesc", "Ramnicu Sarat", "Sighetu Marmatiei", "Campina", "Navodari", "Campulung", "Caracal", "Sacele", "Fagaras", "Dej", "Rosiori de Vede", "Mioveni", "Curtea de Arges", "Husi", "Reghin", "Sighisoara", "Pantelimon", "Pascani", "Oltenita", "Turnu Magurele", "Caransebes", "Falticeni", "Radauti", "Lupeni", "Dorohoi", "Vulcan", "Campia Turzii", "Zarnesti", "Borsa", "Popesti-Leordeni", "Codlea", "Carei", "Moinesti", "Petrila", "Sebes", "Tarnaveni", "Floresti", "Gherla", "Fetesti-Gara", "Buftea", "Cugir", "Moreni", "Gheorgheni", "Comanesti", "Salonta", "Cernavoda", "Targu Secuiesc", "Bailesti", "Campulung Moldovenesc", "Aiud", "Valea Caselor (Dragasani)", "Dragasani", "Bals", "Bocsa", "Motru", "Corabia", "Bragadiru", "Urziceni", "Rasnov", "Rasnov Romacril", "Buhusi", "Zimnicea", "Marghita", "Mizil", "Cisnadie", "Targu Neamt", "Calafat", "Vatra Dornei", "Adjud", "Gaesti", "Tandarei", "Gura Humorului", "Chitila", "Viseu de Sus", "Otopeni", "Ludus", "Dragu-Brad", "Brad", "Valu lui Traian", "Cumpana", "Sannicolau Mare", "Valenii de Munte", "Jilava", "Dabuleni", "Filiasi", "Blaj", "Ovidiu", "Simleu Silvaniei", "Matca", "Pecica", "Rovinari", "Videle", "Baicoi", "Pucioasa", "Jimbolia", "Baia Sprie", "Targu Frumos", "Vicovu de Sus", "Orsova", "Sinaia", "Negresti-Oas", "Beius", "Santana", "Pechea", "Simeria", "Boldesti-Scaeni", "Poienile de sub Munte", "Valea lui Mihai", "Covasna", "Targu Ocna", "Toplita", "Sovata", "Otelu Rosu", "Oravita", "Moisei", "Harsova", "Murfatlar", "Beclean", "Poiana Mare", "Huedin", "Babadag", "Marasesti", "Topoloveni", "Sangeorgiu de Mures", "Jibou", "Sabaoani", "Hateg", "Avrig", "Darmanesti", "Marginea", "Moldova Veche", "Ineu", "Bolintin-Vale", "Mihail Kogalniceanu", "Macin", "Tomesti", "Nasaud", "Uricani", "Rosu", "Calan", "Borcea", "Afumati", "Domnesti", "Draganesti-Olt", "Cristuru Secuiesc", "1 Decembrie", "Lumina", "Fetesti", "Mogosoaia", "Modelu", "Dumbravita", "Seini", "Alesd", "Sangeorz-Bai", "Curtici", "Darabani", "Nadlac", "Victoria", "Amara", "Branesti", "Harlau", "Lipova", "Techirghiol", "Agnita", "Sacueni", "Titu", "Siret", "Segarcea", "Odobesti", "Podu Iloaiei", "Ocna Mures", "Urlati", "Strehaia", "Tasnad", "Cajvana", "Tuzla", "Sadova", "Vlahita", "Stei", "Diosig", "Cobadin", "Gilau", "Vladimirescu", "Dancu", "Bumbesti-Jiu", "Busteni", "Peretu", "Cudalbi", "Bosanci", "Balotesti", "Lunca Cetatuii", "Dragalina", "Fieni", "Chisineu-Cris", "Balan", "Sandominic", "Strejnicu", "Baciu", "Fundulea", "Ianca", "Remetea", "Fagetel (Remetea)", "Roseti", "Breaza de Sus", "Cornetu", "Insuratei", "Apahida", "Berceni", "Vicovu de Jos", "Savinesti (Poiana Teiului)", "Savinesti", "Teius", "Barbulesti", "Plosca", "Toflea", "Magurele", "Feldru", "Anina", "Valea Mare (Negresti)", "Negresti", "Peris", "Fundeni", "Giroc", "Baile Borsa", "Oituz", "Rucar", "Curcani", "Valea Mare (Babeni)", "Babeni", "Rodna", "Deta", "Ruscova", "Intorsura Buzaului", "Pancota", "Glina", "Talmaciu", "Copsa Mica", "Motatei", "Gugesti", "Schela Cladovei", "Sancraiu de Mures", "Iernut", "Targu Lapus", "Maieru", "Prejmer", "Pogoanele", "Dobroesti", "Baraolt", "Arbore", "Homocea", "Corund", "Tufesti", "Giarmata", "Baia", "Dumbraveni", "Eforie Nord", "Horodnic de Sus", "Greci", "Tudora", "Straja", "Rasinari", "Sebis", "Raducaneni", "Siria", "Paunesti", "Saveni", "Tunari"];
+
+    
     //Image preview before upload
     var img_containers = document.querySelectorAll(".file-input, .custom");
 

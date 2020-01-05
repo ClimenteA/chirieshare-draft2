@@ -10,6 +10,9 @@ from django.utils.crypto import get_random_string
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 
+from django.shortcuts import render, get_object_or_404
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+
 
 
 def pagina_de_prezentare(request):
@@ -141,7 +144,22 @@ def adauga_anunt(request):
 
 
 def anunturi(request):
-    return render(request, "anunturi.html", {})
+    
+    anunturi = Anunt.objects.all()
+
+    page = request.GET.get('page', 1)
+
+    paginator = Paginator(anunturi, 10)
+
+    try:
+        anunturi_ = paginator.page(page)
+    except PageNotAnInteger:
+        anunturi_ = paginator.page(1)
+    except EmptyPage:
+        anunturi_ = paginator.page(paginator.num_pages)
+
+    return render(request, "anunturi.html", {"anunturi": anunturi_})
+    
     
 def detalii_anunt(request, id_anunt):
     return render(request, "detalii_anunt.html", {})
