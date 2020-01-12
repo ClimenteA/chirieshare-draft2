@@ -96,6 +96,7 @@ article.card.product > img {
   border-radius: var(--border-radius);
 }
 
+
 article.card.product > img.fav {
   position: absolute;
   top: 0;
@@ -107,6 +108,10 @@ article.card.product > img.fav {
   min-width: unset;
   border: none;
   cursor: pointer;
+}
+
+.fav:hover{
+    transform: scale(1.1);
 }
 
 

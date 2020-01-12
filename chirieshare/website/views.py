@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect, HttpResponse
+from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from .models import Utilizator, Anunt, Favorite, Sheriasi
 from .forms import AutentificareForm, AnuntForm, FavoriteForm, SheriasiForm
@@ -13,6 +13,10 @@ from django.contrib import messages
 from django.shortcuts import render, get_object_or_404
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
+from django.http import JsonResponse, HttpResponse
+#from django.template.loader import render_to_string 
+# #return HttpResponse(render_to_string("detalii_anunt.html", {}))
+    
 
 
 def pagina_de_prezentare(request):
@@ -141,15 +145,25 @@ def adauga_anunt(request):
             messages.error(request, 'Datele cerute nu au fost completate corect!')
             return render(request, "adauga_anunt.html", {})
     
-
-
-def anunturi(request):
     
-    anunturi = Anunt.objects.all()
+def anunturi(request, localitate="", zona="", apcam="", pret=""):
+    
+    anunturi = Anunt.objects.all().order_by('-data_postarii')
 
+    print("Filtre: ", localitate, zona, apcam, pret, type(pret))
+    
+    if localitate not in ["toate", ""]:
+        anunturi = anunturi.filter(localitate__contains=localitate)
+    if zona not in ["toate", ""]:
+        anunturi = anunturi.filter(zona__contains=zona)
+    if pret not in ["0", ""]:
+        anunturi = anunturi.filter(pret__lte=int(pret))
+    
+    # if apcam:
+    #     anunturi = anunturi.filter(apartament__contains=apcam)
+    
     page = request.GET.get('page', 1)
-
-    paginator = Paginator(anunturi, 10)
+    paginator = Paginator(anunturi, 15)
 
     try:
         anunturi_ = paginator.page(page)
@@ -158,11 +172,34 @@ def anunturi(request):
     except EmptyPage:
         anunturi_ = paginator.page(paginator.num_pages)
 
-    return render(request, "anunturi.html", {"anunturi": anunturi_})
-    
-    
+
+    return render(request, "anunturi.html", {"anunturi": anunturi_, 
+                                             "filtre": {"localitate": localitate, 
+                                                        "zona":zona, 
+                                                        "apcam":apcam, 
+                                                        "pret":pret, 
+                                                        }})
+
+
+
+@login_required
+def adauga_la_favorite(request, id_anunt):
+
+    return JsonResponse({"ok": id_anunt})
+
+
+@login_required
+def scoate_de_la_favorite(request, id_anunt):
+
+    return JsonResponse({"ok": id_anunt})
+
+
+
 def detalii_anunt(request, id_anunt):
     return render(request, "detalii_anunt.html", {})
+
+
+
 
 @login_required
 def cont(request, id_utilizator=None):
