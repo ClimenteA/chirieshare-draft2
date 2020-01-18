@@ -194,9 +194,10 @@ def scoate_de_la_favorite(request, id_anunt):
     return JsonResponse({"ok": id_anunt})
 
 
-
 def detalii_anunt(request, id_anunt):
-    return render(request, "detalii_anunt.html", {})
+    anunt = Anunt.objects.get(pk=int(id_anunt.strip()))
+    user = Utilizator(email=anunt.postat_de)
+    return render(request, "detalii_anunt.html", {"anunt": anunt, "user": user})
 
 
 

@@ -30,6 +30,7 @@ urlpatterns = [
     path('anunturi/adauga-la-favorite/<id_anunt>/', views.adauga_la_favorite, name="adauga_la_favorite"),
     path('anunturi/scoate-de-la-favorite/<id_anunt>/', views.scoate_de_la_favorite, name="scoate_de_la_favorite"),
     path('anunturi/filtreaza/<localitate>/<zona>/<apcam>/<pret>/', views.anunturi, name="anunturi"),
+    path('detalii-anunt/<id_anunt>/', views.detalii_anunt, name="detalii_anunt"),
     path('anunturi/detalii-anunt/<id_anunt>/', views.detalii_anunt, name="detalii_anunt"),
     # path('cont/', views.cont, name="cont"),
     # path('cont/<id_utilizator>/', views.cont, name="cont"),

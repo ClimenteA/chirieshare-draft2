@@ -47,13 +47,16 @@ class Utilizator(AbstractUser):
     """
     email      = models.EmailField(unique=True)
     descriere  = models.CharField(max_length=255, blank=True)
-    ocupatie   = models.CharField(max_length=50, blank=True)
-    sex        = models.CharField(max_length=1, default="N", blank=True)
-    token      = models.CharField(max_length=1, blank=True)
+    ocupatie   = models.CharField(max_length=50, blank=True, default="nespecificat")
+    nume       = models.CharField(max_length=50, blank=True, default="nespecificat")
+    sex        = models.CharField(max_length=1, blank=True, default="N")
     varsta     = models.PositiveIntegerField(blank=True, null=True)
     buget      = models.PositiveIntegerField(blank=False, null=True)
-    imagine_profil  = models.ImageField(blank=True, upload_to="utilizatori/")
+    telefon    = models.CharField(max_length=20, blank=True, default="nespecificat")
+    imagine_profil  = models.ImageField(blank=True, upload_to="utilizatori/", default="utilizatori/imagine_profil.svg")
     cont_premium    = models.BooleanField(default=False)
+    
+    token = models.CharField(max_length=1, blank=True)
     
     #Scoatem field/coloanele 
     first_name = None
@@ -67,10 +70,6 @@ class Utilizator(AbstractUser):
     
     def __str__(self):
         return f"{self.email}"
-
-    @property
-    def nume(self):
-        return f"{self.email.split('@')[0]}"
 
     class Meta:
         verbose_name_plural = "Utilizatori"
@@ -123,7 +122,10 @@ class Anunt(models.Model):
 
     @property
     def titlu(self):
-        return f"{self.localitate}, {self.zona}"
+        if self.apartament:
+            return f"Ap. {self.numar_camere} camere {self.localitate}, {self.zona}"
+        else:
+            return f"{self.numar_camere} camere  in {self.localitate}, {self.zona}"
 
     class Meta:
         verbose_name_plural = "Anunturi"

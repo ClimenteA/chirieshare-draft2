@@ -9,54 +9,47 @@
 
 
 {% block content %}
+
+
 <div class="carousel fluid">
-<h2 class="title">Ap. 1 camera. Iasi, Nicolina</h2>
+<h2 class="title">{{ anunt.titlu }}</h2>
 <ul class="images">
-    <li><img src="{% static 'logo_placeholder.svg' %}" alt="" /></li>
-    <!-- <li><img src="./pics/2.jpg" alt="" /></li>
-        <li><img src="./pics/3.jpg" alt="" /></li>
-        <li><img src="./pics/4.jpg" alt="" /></li>
-        <li><img src="./pics/2.jpg" alt="" /></li>
-        <li><img src="./pics/3.jpg" alt="" /></li> -->
+    <li><img src="/media/{{ anunt.img1 }}" /></li>
+    <li><img src="/media/{{ anunt.img2 }}" onerror="this.remove()" /></li>
+    <li><img src="/media/{{ anunt.img3 }}" onerror="this.remove()" /></li>
+    <li><img src="/media/{{ anunt.img4 }}" onerror="this.remove()" /></li>
+    <li><img src="/media/{{ anunt.img5 }}" onerror="this.remove()" /></li>
+    <li><img src="/media/{{ anunt.img6 }}" onerror="this.remove()" /></li>
 </ul>
 
 <img id="prev" src="{% static 'icons/chevron_left.svg' %}" alt="prev" />
 <img id="next" src="{% static 'icons/chevron_right.svg' %}" alt="next" />
-<span class="tip mtop">Postat la 07 Iul 2019, 19:11</span>
+<span class="tip mtop">Postat la {{ anunt.data_postarii| date:'j F Y' }}</span>
 </div>
 
 <article class="card user fluid">
 <section class="profile">
-    <img src="{% static 'ca.jpg' %}" />
-    <span class="name">Climente Alin</span>
-    <span class="about">Inginer, M, 28 ani</span>
+    <img src="/media/{{ user.imagine_profil }}" />
+    <span class="name">{{ user.nume }}</span>
+    <span class="about">{{ user.ocupatie }}, {{ user.sex }}, {{ user.varsta }} ani</span>
 </section>
 
 <section class="contact">
     <h3 class="bold">Contact</h3>
-    <button class="darkish">07151321251</button>
-    <button class="darkish">
-    alin.climente@gmail.com
-    </button>
+    <button class="darkish">{{ user.telefon }}</button>
+    <button class="darkish">{{ user.email }}</button>
 </section>
 </article>
 
 <article class="card fluid">
 <h3 class="title">Descriere</h3>
-<p>
-    Apartamentul este situat aproape de supermarchet, de statiile de
-    autobuz. Se gaseste din pacate greu loc de parcare, dar daca ai
-    bicicleta poti sa o iei in apartament.
-</p>
-<span class="right bold secondary-text"> Pret: 200 euro </span>
+<p>{{ anunt.descriere }}</p>
+<span class="right bold secondary-text"> Pret: {{ anunt.pret }} euro </span>
 </article>
 
 <article class="card fluid">
 <h3 class="title">Facilitati</h3>
-<p class="bold">
-    aragaz, masina de spalat, centrala termica, aproape de supermarchet,
-    loc de parcare
-</p>
+<p class="bold">{{ anunt.facilitati }}</p>
 </article>
 
 <article class="card fluid">
@@ -64,5 +57,87 @@
 <div class="chip"><img src="{% static 'ca.jpg' %}" />Climente Alin</div>
 <button class="sm right complementary">+</button>
 </article>
+
+
+
+
+
+<p>{{ anunt.titlu }}</p>
+<p>{{ anunt.zona }}</p>
+<p>{{ anunt.pret }}</p>
+<p>{{ anunt.data_postarii }}</p>
+<p>{{ anunt.localitate }}</p>
+<p>{{ anunt.id }}</p>
+<p>{{ anunt.apartament }}</p>
+<p>{{ anunt.numar_camere }}</p>
+<p>{{ anunt.numar_colegi }}</p>
+<p>{{ anunt.mfx }}</p>
+<p>{{ anunt.descriere }}</p>
+
+<p>{{ user.nume }}</p>
+
+
+<script>
+
+
+var carousels = document.getElementsByClassName("images");
+var carousel = carousels[0];
+var images = carousel.querySelectorAll("img");
+
+var next = document.querySelector("#next");
+var prev = document.querySelector("#prev");
+
+if (images.length < 2){
+    next.style.display = "none";
+    prev.style.display = "none";
+    console.log("Doar o imagine pentru acest anunt.");
+}
+
+images.forEach((img, idx) => {
+    if (idx !== 0) {
+        img.style.display = "none";
+    }else {
+        img.style.display = "block";
+    }
+})
+
+function getIdx(){
+    for (var i=0; i<images.length; i++) {
+        if (images[i].style.display === "block"){
+            images[i].style.display = "none";
+            var idx = i;
+            break;
+        }
+    }
+    return idx;
+}
+
+next.addEventListener("click", _ => {
+    // Make the current img invisible, return the index
+    var idx = getIdx();
+    // Make img visible if current index is bigger than stored idx
+    if (idx+1 === images.length){
+        images[0].style.display = "block";
+    } else {
+        images[idx+1].style.display = "block";   
+    }
+    
+}, false);
+
+
+prev.addEventListener("click", _ => {
+    // Make the current img invisible, return the index
+    var idx = getIdx();
+    // Make img visible if current index is bigger than stored idx
+    if (idx === 0){
+        images[images.length-1].style.display = "block";
+    } else {
+        images[idx-1].style.display = "block";   
+    }
+}, false);
+
+
+</script>
+
 
 {% endblock %}
