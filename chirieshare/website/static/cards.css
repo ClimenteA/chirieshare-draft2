@@ -1,7 +1,5 @@
 article.card {
   display: inline-block;
-  border: 2px solid var(--greyish);
-  box-shadow: 0px 1px 1px var(--box-shadow);
   border-radius: 10px;
   min-width: 300px;
   min-height: 100px;
@@ -9,12 +7,12 @@ article.card {
   margin: var(--margin);
   padding: 20px;
   max-width: 640px;
+  box-shadow: 0px 4px 4px var(--box-shadow);
 }
 
 article.card > .title {
   margin-bottom: 15px;
   font-weight: bold;
-  border-bottom: 2px solid var(--greyish);
   text-align: center;
 }
 
@@ -91,8 +89,6 @@ article.card.product > img {
   min-width: inherit;
   width: inherit;
   object-fit: cover;
-  border-radius: 10px;
-  border: 2px solid var(--greyish);
   border-radius: var(--border-radius);
 }
 
@@ -136,7 +132,6 @@ article.card.product > .title {
   text-overflow: ellipsis;
   overflow: hidden;
   cursor: pointer;
-  box-shadow: 0px 6px 6px var(--box-shadow);
 }
 
 @media only screen and (max-width: 640px) {

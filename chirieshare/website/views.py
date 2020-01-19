@@ -137,6 +137,7 @@ def adauga_anunt(request):
     
     elif request.method == "POST":
         form = AnuntForm(request.POST, request.FILES, instance=request.user) 
+        print(request.POST)
         if form.is_valid():
             Anunt(postat_de=request.user, **form.cleaned_data).save()
             messages.success(request, 'Anuntul a fost adaugat!')

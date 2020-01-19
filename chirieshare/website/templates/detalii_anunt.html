@@ -15,11 +15,11 @@
 <h2 class="title">{{ anunt.titlu }}</h2>
 <ul class="images">
     <li><img src="/media/{{ anunt.img1 }}" /></li>
-    <li><img src="/media/{{ anunt.img2 }}" onerror="this.remove()" /></li>
-    <li><img src="/media/{{ anunt.img3 }}" onerror="this.remove()" /></li>
-    <li><img src="/media/{{ anunt.img4 }}" onerror="this.remove()" /></li>
-    <li><img src="/media/{{ anunt.img5 }}" onerror="this.remove()" /></li>
-    <li><img src="/media/{{ anunt.img6 }}" onerror="this.remove()" /></li>
+    <li><img src="/media/{{ anunt.img2 }}" onerror="this.parentElement.remove()" /></li>
+    <li><img src="/media/{{ anunt.img3 }}" onerror="this.parentElement.remove()" /></li>
+    <li><img src="/media/{{ anunt.img4 }}" onerror="this.parentElement.remove()" /></li>
+    <li><img src="/media/{{ anunt.img5 }}" onerror="this.parentElement.remove()" /></li>
+    <li><img src="/media/{{ anunt.img6 }}" onerror="this.parentElement.remove()" /></li>
 </ul>
 
 <img id="prev" src="{% static 'icons/chevron_left.svg' %}" alt="prev" />
@@ -60,6 +60,9 @@
 
 
 <script>
+
+
+document.addEventListener("DOMContentLoaded", function(){
 
 
 var carousels = document.getElementsByClassName("images");
@@ -117,6 +120,11 @@ prev.addEventListener("click", _ => {
         images[idx-1].style.display = "block";   
     }
 }, false);
+
+
+
+//DOM loaded    
+});
 
 
 </script>
