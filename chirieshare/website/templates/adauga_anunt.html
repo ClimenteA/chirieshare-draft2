@@ -14,7 +14,7 @@
 {% block content %}
     <h4 class="underlined darkish-text bold">Spre inchiriere</h4>
     
-    <form action="{% url 'adauga_anunt' %}" method="POST" enctype="multipart/form-data">
+    <form action="{% url 'adauga_anunt' %}" method="POST" enctype="multipart/form-data" spellcheck="false">
         
         {% csrf_token %}
 

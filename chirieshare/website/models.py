@@ -48,7 +48,7 @@ class Utilizator(AbstractUser):
     email      = models.EmailField(unique=True)
     descriere  = models.CharField(max_length=255, blank=True)
     ocupatie   = models.CharField(max_length=50, blank=True, default="nespecificat")
-    nume       = models.CharField(max_length=50, blank=True, default="nespecificat")
+    nume       = models.CharField(max_length=50, blank=True)
     sex        = models.CharField(max_length=1, blank=True, default="N")
     varsta     = models.PositiveIntegerField(blank=True, null=True)
     buget      = models.PositiveIntegerField(blank=False, null=True)
@@ -91,7 +91,7 @@ class Anunt(models.Model):
         mfx                      - str colegi doar baieti(m), doar fete(f), fete/baieti(x)
         descriere                - str descrierea locuintei in detaliu 
         titlu                    - generat automat din localitate + zona + pret 
-        facilitati               - date extrase automat din descriere
+        alte_detalii             - date extrase automat din descriere
         img1                     - prima imagine
         img2                     - a doua imagine etc
        
@@ -115,7 +115,7 @@ class Anunt(models.Model):
     img5 = models.ImageField(upload_to="anunturi/", blank=True)
     img6 = models.ImageField(upload_to="anunturi/", blank=True)
     
-    facilitati = models.CharField(max_length=255, blank=True)
+    alte_detalii = models.CharField(max_length=255, blank=True)
 
     def __str__(self):
         return f"{self.localitate}, {self.zona} - {self.pret}"

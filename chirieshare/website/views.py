@@ -35,11 +35,10 @@ def autentificare(request):
             login(request, user)
             return redirect('anunturi')
         else:
-            messages.error(request, 'Date de logare incorecte!')
+            messages.error(request, 'Date de logare incorecte sau nu esti inregistrat!')
             return render(request, "autentificare.html", {'form': AutentificareForm})
 
 
-        
 def inregistrare(request, activare_cont=None):
     """ Inregistrare si trimitere link activare catre utilizator """
 
@@ -54,17 +53,19 @@ def inregistrare(request, activare_cont=None):
                 user.is_active = True
                 user.token = ""
                 user.save()
-                messages.success(request, 'Contul a fost activat!')
+                messages.success(request, 'Contul a fost activat! Acum te poti loga!')
                 return redirect('autentificare') 
             else:
-                messages.error(request, 'Contul nu a putut fi activat!')
+                messages.error(request, 'Contul nu a putut fi activat! Link folosit sau incorect!')
                 return redirect('inregistrare')
 
     elif request.method == 'POST':
         # Adauga utilizatorul in baza de date ca inactiv 
         try:
             user = Utilizator.objects.create_user( email    = request.POST['email'], 
-                                                   password = request.POST['password'])
+                                                   password = request.POST['password'],
+                                                   nume     = request.POST['email'].split("@")[0]
+                                                   )
         except:
             messages.error(request, 'Emailul introdus este folosit! Ti-ai uitat parola?')
             return redirect('inregistrare')
@@ -86,7 +87,6 @@ def inregistrare(request, activare_cont=None):
 
         
                 
-
 def resetare_cont(request, resetare_cont_id=None):
     
     if request.method == 'GET':
@@ -158,9 +158,9 @@ def anunturi(request, localitate="", zona="", apcam="", pret=""):
         anunturi = anunturi.filter(zona__contains=zona)
     if pret not in ["0", ""]:
         anunturi = anunturi.filter(pret__lte=int(pret))
-    
-    # if apcam:
-    #     anunturi = anunturi.filter(apartament__contains=apcam)
+    if apcam:
+        print("apcam", apcam)
+        anunturi = anunturi.filter(apartament__contains=apcam)
     
     page = request.GET.get('page', 1)
     paginator = Paginator(anunturi, 15)
@@ -184,7 +184,6 @@ def anunturi(request, localitate="", zona="", apcam="", pret=""):
 
 @login_required
 def adauga_la_favorite(request, id_anunt):
-
     return JsonResponse({"ok": id_anunt})
 
 

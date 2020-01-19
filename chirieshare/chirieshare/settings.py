@@ -136,8 +136,8 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # https://docs.djangoproject.com/en/2.2/topics/auth/default/
 
-LOGIN_URL = 'autentificare/'
-LOGOUT_REDIRECT_URL = ''
+LOGIN_URL = 'autentificare'
+LOGOUT_REDIRECT_URL = 'pagina_de_prezentare'
 
 
 

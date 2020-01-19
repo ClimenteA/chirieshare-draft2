@@ -23,7 +23,7 @@ AnuntForm = modelform_factory(Anunt,fields=['localitate',
                                             'img4',
                                             'img5',
                                             'img6',
-                                            'facilitati'],
+                                            'alte_detalii'],
 
                                     widgets={'apartament': HiddenInput}    
                                     )
